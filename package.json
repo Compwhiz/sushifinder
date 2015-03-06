@@ -2,12 +2,12 @@
   "name": "sushi-finder",
   "description": "Awesome web app to help you find nearby sushi restaraunts.",
   "version": "2.0.0",
-  "main":"app.js",
+  "main":"./server/app.js",
   "authors": [
     "Josh Poole"
   ],
   "scripts": {
-    "start": "node app.js"
+    "start": "node ./server/app.js"
   },
   "engines": {
     "node": "0.12.x"
