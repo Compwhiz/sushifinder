@@ -23,9 +23,6 @@
         controller: 'homeController',
         controllerAs: 'homeCtrl',
         templateUrl: 'app/home/views/home.html'
-        // templateProvider: function($templateCache) {
-        //   return $templateCache.get('app/home/views/home.html');
-        // }
       });
 
       // Theme setup

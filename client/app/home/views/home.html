@@ -1,19 +1,32 @@
+<div layout>
+  <md-button class="md-raised" data-ng-click="homeCtrl.showSideNav()" hide-gt-md>Search Options</md-button>
+</div>
+<div layout="row" data-ng-show="homeCtrl.geocode">
+  <div flex>
+    <h1>{{homeCtrl.locality}}, {{homeCtrl.state}} {{homeCtrl.postalCode}}</h1>
+  </div>
+</div>
 <form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch()">
   <div layout="row">
-    <div flex>
-      <h1>{{homeCtrl.locality}}, {{homeCtrl.state}} {{homeCtrl.postalCode}}</h1>
-    </div>
+    <md-input-container flex>
+      <label>Search Near</label>
+      <input type="text" data-ng-model="homeCtrl.location">
+    </md-input-container>
   </div>
   <div layout="row">
-    <md-button flex class="buttonFindSushi md-raised md-button md-primary md-padding">Find Me Sushi</md-button>
+    <md-button flex-sm class="buttonFindSushi md-raised md-button md-primary md-padding">Find Me Sushi</md-button>
   </div>
 </form>
 <div layout="row" layout-padding layout-align="space-around" data-ng-show="homeCtrl.searching" class="text-center">
   <md-progress-circular md-mode="indeterminate"></md-progress-circular>
 </div>
 <div layout="row" data-ng-show="!homeCtrl.searching">
-  <md-content class="md-padding" data-ng-show="homeCtrl.searched && (!homeCtrl.results || homeCtrl.results.length === 0)">No Sushi Found</md-content>
-  <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex>
+  <md-content flex class="md-padding" data-ng-show="homeCtrl.searched && (!homeCtrl.results || homeCtrl.results.length === 0)">
+    <div layout layout-align="center center">
+      No Sushi Found
+    </div>
+  </md-content>
+  <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex style="height:575px;">
     <md-list class="businessResultsList">
       <md-item data-ng-repeat="result in homeCtrl.results">
         <md-item-content>

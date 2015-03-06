@@ -4,7 +4,6 @@
       <label>Search Radius: {{sidebarCtrl.yelp.radius}} miles</label>
       <md-slider id="sliderRadius" data-ng-model="sidebarCtrl.yelp.radius" flex min="{{sidebarCtrl.yelp.radiusMin}}" max="{{sidebarCtrl.yelp.radiusMax}}"></md-slider>
     </div>
-    <!-- <input type="number" data-ng-model="sidebarCtrl.yelp.radius" aria-controls="sliderRadius"> -->
   </div>
   <div layout="row" layout-padding>
     <div flex>
@@ -25,7 +24,7 @@
   </div>
   <div layout="row" layout-padding>
     <md-input-container flex>
-      <label>Search Term</label>
+      <label>Search For</label>
       <input type="text" data-ng-model="sidebarCtrl.yelp.term">
     </md-input-container>
   </div>

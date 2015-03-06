@@ -7,7 +7,8 @@
     var service = {
       getCurrentPosition: getCurrentPosition,
       calculateDistance: calculateDistance,
-      getGeocode: getGeocode,
+      getGeocodeByCoords: getGeocodeByCoords,
+      getGeocodeByLocation: getGeocodeByLocation,
       currentPosition: {}
     };
 
@@ -40,8 +41,8 @@
       return googleMaps.computeDistance(latLng1, latLng2);
     }
 
-    // getGeocode
-    function getGeocode(coords) {
+    // getGeocodeByCoords
+    function getGeocodeByCoords(coords) {
       if (!coords)
         return $q.when();
 
@@ -49,6 +50,22 @@
       var latlng = [].concat(coords.latitude, coords.longitude);
       url += latlng.join();
 
+      return getGeocode(url);
+    }
+
+    // getGeocodeByLocation
+    function getGeocodeByLocation(location){
+      if (!location)
+        return $q.when();
+
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=";
+      url += encodeURIComponent(location);
+
+      return getGeocode(url);
+    }
+
+// getGeocode
+    function getGeocode(url){
       var defer = $q.defer();
 
       $http.get(url).then(function(response) {
