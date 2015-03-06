@@ -9,7 +9,8 @@
       calculateDistance: calculateDistance,
       getGeocodeByCoords: getGeocodeByCoords,
       getGeocodeByLocation: getGeocodeByLocation,
-      currentPosition: {}
+      currentPosition: null,
+      searchPosition: null
     };
 
     return service;
@@ -35,9 +36,14 @@
     /// 'M' is statute miles (default)
     /// 'K' is kilometers
     /// 'N' is nautical miles
-    function calculateDistance(coords, unit) {
+    function calculateDistance(coords, unit, useSearch) {
       var latLng1 = new googleMaps.LatLng(coords.latitude, coords.longitude);
-      var latLng2 = new googleMaps.LatLng(service.currentPosition.coords.latitude, service.currentPosition.coords.longitude);
+      var latLng2;
+      if (service.searchPosition || useSearch) {
+        latLng2 = new googleMaps.LatLng(service.searchPosition.lat, service.searchPosition.lng);
+      } else {
+        latLng2 = new googleMaps.LatLng(service.currentPosition.coords.latitude, service.currentPosition.coords.longitude);
+      }
       return googleMaps.computeDistance(latLng1, latLng2);
     }
 
@@ -54,7 +60,7 @@
     }
 
     // getGeocodeByLocation
-    function getGeocodeByLocation(location){
+    function getGeocodeByLocation(location) {
       if (!location)
         return $q.when();
 
@@ -64,8 +70,8 @@
       return getGeocode(url);
     }
 
-// getGeocode
-    function getGeocode(url){
+    // getGeocode
+    function getGeocode(url) {
       var defer = $q.defer();
 
       $http.get(url).then(function(response) {

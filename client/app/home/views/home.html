@@ -6,12 +6,14 @@
     <h1>{{homeCtrl.locality}}, {{homeCtrl.state}} {{homeCtrl.postalCode}}</h1>
   </div>
 </div>
-<form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch()">
+<form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch()" novalidate>
   <div layout="row">
-    <md-input-container flex>
-      <label>Search Near</label>
-      <input type="text" data-ng-model="homeCtrl.location">
-    </md-input-container>
+    <div flex>
+      <md-input-container>
+        <label>Search Near</label>
+        <input name="location" type="text" data-ng-model="homeCtrl.location">
+      </md-input-container>
+    </div>
   </div>
   <div layout="row">
     <md-button flex-sm class="buttonFindSushi md-raised md-button md-primary md-padding">Find Me Sushi</md-button>
@@ -26,7 +28,18 @@
       No Sushi Found
     </div>
   </md-content>
-  <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex style="height:575px;">
+  <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex>
+    <!-- <md-grid-list md-cols="2" md-cols-sm="1" md-row-height="300px" md-gutter="1em">
+      <md-grid-tile data-ng-repeat="result in homeCtrl.results">
+        <md-card flex>
+          <md-card-content>
+            <img data-ng-src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}">
+            <h3>{{result.name}}</h2>
+          </md-card-content>
+        </md-card>
+      </md-grid-tile>
+    </md-grid-list> -->
+
     <md-list class="businessResultsList">
       <md-item data-ng-repeat="result in homeCtrl.results">
         <md-item-content>

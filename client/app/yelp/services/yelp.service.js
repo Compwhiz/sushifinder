@@ -24,7 +24,11 @@
       }, {
         text: 'Highest Rated',
         value: 2
-      }]
+      }],
+      categoryFilter:[
+        'sushi',
+        'japanese'
+      ]
     };
 
     return service;
@@ -95,6 +99,7 @@
         sort: service.sort,
         // radius_filter: getSearchRadius(),
         deals_filter: service.dealsOnly,
+        category_filter: service.categoryFilter.join()
       };
       return options;
     }

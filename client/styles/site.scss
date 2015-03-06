@@ -19,3 +19,7 @@
 .text-center{
   text-align:center !important;
 }
+
+div[data-ng-message]{
+  color:red;
+}

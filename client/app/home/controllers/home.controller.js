@@ -3,9 +3,9 @@
 
   angular.module('app.home').controller('homeController', homeController);
 
-  homeController.$inject = ['$mdSidenav', 'auth', 'yelp', 'geolocation'];
+  homeController.$inject = ['$mdSidenav', '$mdToast', 'auth', 'yelp', 'geolocation'];
 
-  function homeController($mdSidenav, auth, yelp, geolocation) {
+  function homeController($mdSidenav, $mdToast, auth, yelp, geolocation) {
     var vm = this;
 
     vm.yelpSearch = yelpSearch;
@@ -34,8 +34,16 @@
 
     // yelpSearch
     function yelpSearch() {
+      if (!vm.position && !vm.location) {
+        $mdToast.show($mdToast.simple()
+          .content('Please enter a location or enable GPS location.')
+          .position('right'));
+        return;
+      }
+
       vm.searching = true;
       vm.searched = true;
+      geolocation.searchPosition = null;
 
       if (!vm.location && vm.position) {
         getGeocodeByPosition();
@@ -48,7 +56,7 @@
         });
       } else if (vm.location) {
         geolocation.getGeocodeByLocation(vm.location).then(function(geocode) {
-          console.debug(geocode);
+          geolocation.searchPosition = geocode.geometry.location;
           getLocalityAndState(geocode);
         }, function(error) {
           console.debug(error);
