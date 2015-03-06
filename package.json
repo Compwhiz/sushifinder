@@ -1,13 +1,20 @@
 {
   "name": "sushi-finder",
   "description": "Awesome web app to help you find nearby sushi restaraunts.",
-  "version": "3.0.1",
+  "version": "2.0.0",
+  "main":"app.js",
   "authors": [
     "Josh Poole"
   ],
   "scripts": {
     "start": "node app.js",
-    "test": "mocha"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Compwhiz/sushifinder"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -94,7 +101,6 @@
     "gulp-useref": "^1.1.1",
     "gulp-util": "^3.0.4",
     "jshint-stylish": "^1.0.1",
-    "lodash": "^3.3.1",
     "mocha": "^2.1.0",
     "multiline": "^1.0.2",
     "node-notifier": "^4.1.2",
