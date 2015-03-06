@@ -220,7 +220,8 @@ console.log('\n\nPORT=' + port);
 console.log('NODE_ENV=' + environment);
 
 switch (environment) {
-  case 'build':
+  // case 'build':
+  default:
     console.log('*** BUILD ***\n\n');
     app.use(express.static('./build/'));
     // Any invalid calls for templateUrls are under app/* and should return 404
@@ -230,18 +231,18 @@ switch (environment) {
     // Any deep link calls should return index.html
     app.use('/*', express.static('./build/index.html'));
     break;
-  default:
-    console.log('*** DEV ***\n\n');
-    app.use(express.static('./client/'));
-    app.use(express.static('./'));
-    app.use(express.static('./.tmp'));
-    // Any invalid calls for templateUrls are under app/* and should return 404
-    app.use('/app/*', function(req, res, next) {
-      four0four.send404(req, res);
-    });
-    // Any deep link calls should return index.html
-    app.use('/*', express.static('./client/index.html'));
-    break;
+  // default:
+  //   console.log('*** DEV ***\n\n');
+  //   app.use(express.static('./client/'));
+  //   app.use(express.static('./'));
+  //   app.use(express.static('./.tmp'));
+  //   // Any invalid calls for templateUrls are under app/* and should return 404
+  //   app.use('/app/*', function(req, res, next) {
+  //     four0four.send404(req, res);
+  //   });
+  //   // Any deep link calls should return index.html
+  //   app.use('/*', express.static('./client/index.html'));
+  //   break;
 }
 
 /**
