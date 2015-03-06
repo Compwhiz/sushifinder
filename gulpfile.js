@@ -264,7 +264,7 @@ gulp.task('serve-dev', ['inject'], function() {
 // Serve the build environment
 ///
 gulp.task('serve-build', ['build'], function() {
-  server(false);
+  serve(false);
 });
 
 ///

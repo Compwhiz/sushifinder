@@ -65,7 +65,7 @@
       if (!coords)
         return $q.when();
 
-      var url = "http://maps.googleapis.com/maps/api/geocode/json?sensor=false&latlng=";
+      var url = "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&latlng=";
       var latlng = [].concat(coords.latitude, coords.longitude);
       url += latlng.join();
 
