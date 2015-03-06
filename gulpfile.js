@@ -319,7 +319,7 @@ function serve(isDev, specRunner) {
   }
 
   return $.nodemon(nodeOptions)
-    .on('restart', ['vet'], function(ev) {
+    .on('restart', [], function(ev) {
       log('*** nodemon restarted');
       log('files changed::\n' + ev);
       setTimeout(function() {

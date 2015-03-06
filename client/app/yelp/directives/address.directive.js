@@ -1,21 +1,22 @@
-(function(){
+(function() {
   angular.module('app.yelp').directive('address', address);
 
-  address.$inject = ['geolocation'];
+  address.$inject = ['$templateCache', 'geolocation'];
 
-  function address(geolocation){
+  function address($templateCache, geolocation) {
     var directive = {
-      restrict:'A',
-      templateUrl:'client/app/yelp/views/address.html',
-      scope:{
-        address:'='
+      restrict: 'A',
+      // template: $templateCache.get('app/yelp/views/address.html'),
+      templateUrl:'app/yelp/views/address.html',
+      scope: {
+        address: '='
       },
-      link:link
+      link: link
     };
 
     return directive;
 
-    function link(scope, element, attrs){
+    function link(scope, element, attrs) {
       scope.address.distance = geolocation.calculateDistance(scope.address.coordinate);
     }
   }

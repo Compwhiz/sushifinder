@@ -14,7 +14,7 @@
     vm.searched = false;
     vm.position = {};
     vm.geocode = {};
-    
+
     init();
 
     function init() {
@@ -41,7 +41,6 @@
 
       if (vm.position) {
         yelp.searchByPosition(vm.position.coords).then(function(results) {
-          console.debug(results);
           vm.results = results;
           vm.searching = false;
         }, function(error) {
@@ -86,20 +85,5 @@
         return component.types.indexOf(type) >= 0;
       });
     }
-
-    // // getSearchOptions
-    // function getSearchOptions() {
-    //   var options = {
-    //     sort: vm.sort,
-    //     // radius_filter: getSearchRadius(),
-    //     deals_filter: vm.dealsOnly,
-    //   };
-    //   return options;
-    // }
-    //
-    // // getSearchRadius
-    // function getSearchRadius() {
-    //   return vm.radius * 1609;
-    // }
   }
 })();

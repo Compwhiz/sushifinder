@@ -13,14 +13,24 @@
       'ui.router',
       'ngMaterial'
     ])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $mdThemingProvider) {
+      // $locationProvider.html5Mode(true);
+
       $urlRouterProvider.otherwise('/');
 
       $stateProvider.state('home', {
         url: '/',
         controller: 'homeController',
         controllerAs: 'homeCtrl',
-        templateUrl: 'client/app/home/views/home.html'
+        templateUrl: 'app/home/views/home.html'
+        // templateProvider: function($templateCache) {
+        //   return $templateCache.get('app/home/views/home.html');
+        // }
       });
+
+      // Theme setup
+      $mdThemingProvider.theme('default')
+        .primaryPalette('indigo')
+        .accentPalette('deep-orange');
     }]);
 })();

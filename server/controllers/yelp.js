@@ -65,8 +65,6 @@ module.exports = function(app){
     var term = req.body.term;
     var criteria = req.body.criteria;
 
-    console.log(req.body);
-
     if (!term || term === '' || !criteria)
       return;
     criteria.term = term;
@@ -81,8 +79,6 @@ module.exports = function(app){
 
   app.get('/api/yelp/business/:id', function(req, res) {
     var id = req.params.id;
-    console.log(req.params);
-    console.log(id);
 
     if (!id || id === '')
       return;

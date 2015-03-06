@@ -18,7 +18,7 @@
       <md-item data-ng-repeat="result in homeCtrl.results">
         <md-item-content>
           <div class="md-tile-left">
-            <img src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}" class="businessImage">
+            <img data-ng-src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}" class="businessImage">
           </div>
           <div class="md-tile-content">
             <div layout="row">
@@ -26,7 +26,7 @@
                 <h3>{{result.name}}</h2>
                   <div layout="row" layout-sm="column">
                     <div flex>
-                      <img src="{{result.rating_img_url.replace('http://','https://')}}" alt="rating">
+                      <img data-ng-src="{{result.rating_img_url.replace('http://','https://')}}" alt="rating">
                     </div>
                     <div flex>
                       <small class="reviewCount">{{result.review_count}} reviews</small>
