@@ -1,0 +1,8 @@
+{
+    "fileExtensions": [".js", "jscs"],
+    "excludeFiles": [
+        "./node_modules/**",
+        "./public/js/lib/**",
+        "./libs"
+    ]
+}

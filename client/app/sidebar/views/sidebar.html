@@ -1,0 +1,32 @@
+<div data-ng-controller="sidebarController as sidebarCtrl">
+  <div layout="row" layout-padding>
+    <div flex>
+      <label>Search Radius: {{sidebarCtrl.yelp.radius}} miles</label>
+      <md-slider id="sliderRadius" data-ng-model="sidebarCtrl.yelp.radius" flex min="{{sidebarCtrl.yelp.radiusMin}}" max="{{sidebarCtrl.yelp.radiusMax}}"></md-slider>
+    </div>
+    <!-- <input type="number" data-ng-model="sidebarCtrl.yelp.radius" aria-controls="sliderRadius"> -->
+  </div>
+  <div layout="row" layout-padding>
+    <div flex>
+      <md-switch data-ng-model="sidebarCtrl.yelp.dealsOnly" aria-label="Search for deals only">
+        Deals Only
+      </md-switch>
+    </div>
+  </div>
+  <div layout="row" layout-padding>
+      <div flex>
+        <label>Sort By: </label>
+        <md-select data-ng-model="sidebarCtrl.yelp.sort">
+          <md-option data-ng-repeat="option in sidebarCtrl.yelp.sortOptions" value="{{option.value}}">
+            {{option.text}}
+          </md-option>
+        </md-select>
+      </div>
+  </div>
+  <div layout="row" layout-padding>
+    <md-input-container flex>
+      <label>Search Term</label>
+      <input type="text" data-ng-model="sidebarCtrl.yelp.term">
+    </md-input-container>
+  </div>
+</div>

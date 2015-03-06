@@ -1,0 +1,53 @@
+<form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch()">
+  <div layout="row">
+    <div flex>
+      <h1>{{homeCtrl.locality}}, {{homeCtrl.state}} {{homeCtrl.postalCode}}</h1>
+    </div>
+  </div>
+  <div layout="row">
+    <md-button flex class="buttonFindSushi md-raised md-button md-primary md-padding">Find Me Sushi</md-button>
+  </div>
+</form>
+<div layout="row" layout-padding layout-align="space-around" data-ng-show="homeCtrl.searching" class="text-center">
+  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+</div>
+<div layout="row" data-ng-show="!homeCtrl.searching">
+  <md-content class="md-padding" data-ng-show="homeCtrl.searched && (!homeCtrl.results || homeCtrl.results.length === 0)">No Sushi Found</md-content>
+  <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex>
+    <md-list class="businessResultsList">
+      <md-item data-ng-repeat="result in homeCtrl.results">
+        <md-item-content>
+          <div class="md-tile-left">
+            <img src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}" class="businessImage">
+          </div>
+          <div class="md-tile-content">
+            <div layout="row">
+              <div flex>
+                <h3>{{result.name}}</h2>
+                  <div layout="row" layout-sm="column">
+                    <div flex>
+                      <img src="{{result.rating_img_url.replace('http://','https://')}}" alt="rating">
+                    </div>
+                    <div flex>
+                      <small class="reviewCount">{{result.review_count}} reviews</small>
+                    </div>
+                  </div>
+                  <div>{{result.display_phone}}</div>
+              </div>
+              <div flex style="text-align:right;">
+                <div data-address="result.location"></div>
+              </div>
+            </div>
+            <div layout="row" flex>
+              <span data-ng-repeat="category in result.categories">
+                {{category[0]}}
+                <span data-ng-if="!$last">,&nbsp;</span>
+              </span>
+            </div>
+          </div>
+        </md-item-content>
+        <md-divider md-inset data-ng-if="!$last"></md-divider>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>
