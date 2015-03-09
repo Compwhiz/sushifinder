@@ -24,6 +24,10 @@ gulp.task('default', ['help']);
 gulp.task('build', ['optimize', 'images', 'fonts'], function() {
   log('Builing everything.');
 
+  // Copy favicon
+  gulp.src(config.client + 'favicon.ico')
+    .pipe(gulp.dest(config.build));
+
   var msg = {
     title: 'gulp build',
     subtitle: 'Deployed to the build folder',

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="app.core">
+<html data-ng-app="app.core" data-ng-controller="rootController as root">
 
 <head>
   <meta charset="utf-8" />
@@ -18,6 +18,20 @@
         <span>Sushi Finder</span>
       </h1>
     </md-toolbar>
+    <div>
+      <md-switch data-ng-model="root.showDebugInfo" aria-label="Show Debug Info">
+        Show Debug Info
+      </md-switch>
+      <div data-ng-show="root.showDebugInfo">
+        <h3>Debug Information</h3>
+        <table>
+        <tr data-ng-repeat="info in root.debugInfo">
+          <td><strong>{{info.key}}</strong></td>
+          <td>{{info.value}}</td>
+        </tr>
+      </table>
+      </div>
+    </div>
     <section layout="row" flex>
       <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="sideNavSearchOptions" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-accent">
@@ -38,7 +52,7 @@
 
   <script src="js/lib-d51cea99.js"></script>
 
-  <script src="js/app-ca14c33c.js"></script>
+  <script src="js/app-f5f45c02.js"></script>
 </body>
 
 </html>
