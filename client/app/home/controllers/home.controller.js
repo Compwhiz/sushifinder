@@ -13,6 +13,7 @@
     vm.searching = false;
     vm.searched = false;
     vm.position = null;
+    vm.findingPosition = false;
     vm.geocode = null;
     vm.showSideNav = showSideNav;
 
@@ -20,20 +21,30 @@
 
     // init()
     function init() {
-      geolocation.getCurrentPosition().then(function(position) {
-          vm.position = position;
-          getGeocodeByPosition();
-        },
-        function(error) {
-          console.debug(error);
-        });
+      getCurrentPosition();
 
       if (yelp.searchResults)
         vm.results = yelp.searchResults;
     }
 
+    // getCurrentPosition
+    function getCurrentPosition() {
+      vm.findingPosition = true;
+      geolocation.getCurrentPosition().then(function(position) {
+          vm.position = position;
+          getGeocodeByPosition();
+          vm.findingPosition = false;
+        },
+        function(error) {
+          console.debug(error);
+          vm.findingPosition = false;
+        });
+    }
+
     // yelpSearch
-    function yelpSearch() {
+    function yelpSearch(evt) {
+      // evt.preventDefault();
+
       if (!vm.position && !vm.location) {
         $mdToast.show($mdToast.simple()
           .content('Please enter a location or enable GPS location.')
@@ -55,12 +66,7 @@
           vm.searching = false;
         });
       } else if (vm.location) {
-        geolocation.getGeocodeByLocation(vm.location).then(function(geocode) {
-          geolocation.searchPosition = geocode.geometry.location;
-          getLocalityAndState(geocode);
-        }, function(error) {
-          console.debug(error);
-        })
+        getGeocodeByLocation();
 
         yelp.search(vm.location).then(function(results) {
           vm.results = results;
@@ -68,6 +74,22 @@
         }, function(error) {
           console.debug(error);
           vm.searching = false;
+        });
+      }
+    }
+
+    // getGeocodeByLocation
+    function getGeocodeByLocation() {
+      if (vm.location) {
+        vm.geocode = null;
+        geolocation.getGeocodeByLocation(vm.location).then(function(geocode) {
+          if (geocode.status !== 'ZERO_RESULTS') {
+            vm.geocode = geocode;
+            geolocation.searchPosition = geocode.geometry.location;
+            getLocalityAndState(geocode);
+          }
+        }, function(error) {
+          console.debug(error);
         });
       }
     }

@@ -8,7 +8,7 @@
   <title>SushiFinder</title>
   <link rel="stylesheet" href="styles/lib-81002d83.css">
 
-  <link rel="stylesheet" href="styles/app-49290481.css">
+  <link rel="stylesheet" href="styles/app-14a42378.css">
 </head>
 
 <body>
@@ -18,20 +18,19 @@
         <span>Sushi Finder</span>
       </h1>
     </md-toolbar>
-    <div>
+    <!-- <div>
       <md-switch data-ng-model="root.showDebugInfo" aria-label="Show Debug Info">
         Show Debug Info
       </md-switch>
-      <div data-ng-show="root.showDebugInfo">
-        <h3>Debug Information</h3>
-        <table>
+      <table data-ng-show="root.showDebugInfo">
         <tr data-ng-repeat="info in root.debugInfo">
-          <td><strong>{{info.key}}</strong></td>
+          <td>
+            <strong>{{info.key}}</strong>
+          </td>
           <td>{{info.value}}</td>
         </tr>
       </table>
-      </div>
-    </div>
+    </div> -->
     <section layout="row" flex>
       <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="sideNavSearchOptions" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-accent">
@@ -52,7 +51,7 @@
 
   <script src="js/lib-d51cea99.js"></script>
 
-  <script src="js/app-f5f45c02.js"></script>
+  <script src="js/app-4349be05.js"></script>
 </body>
 
 </html>

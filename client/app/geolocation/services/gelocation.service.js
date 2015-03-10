@@ -23,6 +23,9 @@
         navigator.geolocation.getCurrentPosition(function(position) {
           service.currentPosition = position;
           defer.resolve(position);
+        }, function(error){
+          service.currentPosition = null;
+          defer.reject(error.message);
         });
       } else {
         service.currentPosition = {};

@@ -1,12 +1,20 @@
 <div layout>
   <md-button class="md-raised" data-ng-click="homeCtrl.showSideNav()" hide-gt-md>Search Options</md-button>
 </div>
-<div layout="row" data-ng-show="homeCtrl.geocode">
-  <div flex>
+<div layout="row" flex data-ng-show="homeCtrl.findingPosition" layout-align="center center" layout-padding>
+  <h4>Finding position</h4>
+  <md-progress-circular md-mode="indeterminate" md-diameter="24"></md-progress-circular>
+</div>
+<div layout="row" flex layout-padding data-ng-show="!homeCtrl.findingPosition">
+  <!-- geocode: {{homeCtrl.geocode}} -->
+  <div data-ng-show="homeCtrl.geocode">
     <h1>{{homeCtrl.locality}}, {{homeCtrl.state}} {{homeCtrl.postalCode}}</h1>
   </div>
+  <div data-ng-show="!homeCtrl.geocode">
+    Enable location or enter a location below
+  </div>
 </div>
-<form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch()" novalidate>
+<form name="homeCtrl.formSearch" data-ng-submit="homeCtrl.yelpSearch($event)" novalidate>
   <div layout="row">
     <div flex>
       <md-input-container>
@@ -29,17 +37,6 @@
     </div>
   </md-content>
   <md-content class="md-padding" data-ng-show="homeCtrl.results && homeCtrl.results.length > 0" flex>
-    <!-- <md-grid-list md-cols="2" md-cols-sm="1" md-row-height="300px" md-gutter="1em">
-      <md-grid-tile data-ng-repeat="result in homeCtrl.results">
-        <md-card flex>
-          <md-card-content>
-            <img data-ng-src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}">
-            <h3>{{result.name}}</h2>
-          </md-card-content>
-        </md-card>
-      </md-grid-tile>
-    </md-grid-list> -->
-
     <md-list class="businessResultsList">
       <md-item data-ng-repeat="result in homeCtrl.results">
         <md-item-content>
@@ -47,28 +44,26 @@
             <img data-ng-src="{{result.image_url.replace('http://','https://')}}" alt="{{result.name}}" class="businessImage">
           </div>
           <div class="md-tile-content">
-            <div layout="row">
+            <div layout="row" layout-sm="column">
               <div flex>
-                <h3>{{result.name}}</h2>
+                <h3>{{$index+1}}.&nbsp;{{result.name}}</h2>
                   <div layout="row" layout-sm="column">
                     <div flex>
                       <img data-ng-src="{{result.rating_img_url.replace('http://','https://')}}" alt="rating">
-                    </div>
-                    <div flex>
                       <small class="reviewCount">{{result.review_count}} reviews</small>
                     </div>
                   </div>
-                  <div>{{result.display_phone}}</div>
+                  <div layout-padding>{{result.display_phone}}</div>
               </div>
-              <div flex style="text-align:right;">
+              <div flex layout-padding>
                 <div data-address="result.location"></div>
               </div>
             </div>
-            <div layout="row" flex>
-              <span data-ng-repeat="category in result.categories">
+            <div layout="row" layout-sm="column" style="padding-left:8px;">
+              <div flex data-ng-repeat="category in result.categories | limitTo:3">
                 {{category[0]}}
                 <span data-ng-if="!$last">,&nbsp;</span>
-              </span>
+              </div>
             </div>
           </div>
         </md-item-content>

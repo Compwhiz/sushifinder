@@ -1,8 +1,19 @@
 <div data-ng-controller="sidebarController as sidebarCtrl">
+
+  <div layout="row" layout-padding>
+    <md-input-container flex>
+      <label>Search For</label>
+      <input type="text" data-ng-model="sidebarCtrl.yelp.term">
+    </md-input-container>
+  </div>
   <div layout="row" layout-padding>
     <div flex>
-      <label>Search Radius: {{sidebarCtrl.yelp.radius}} miles</label>
-      <md-slider id="sliderRadius" data-ng-model="sidebarCtrl.yelp.radius" flex min="{{sidebarCtrl.yelp.radiusMin}}" max="{{sidebarCtrl.yelp.radiusMax}}"></md-slider>
+      <label>Sort By: </label>
+      <md-select data-ng-model="sidebarCtrl.yelp.sort">
+        <md-option data-ng-repeat="option in sidebarCtrl.yelp.sortOptions" value="{{option.value}}">
+          {{option.text}}
+        </md-option>
+      </md-select>
     </div>
   </div>
   <div layout="row" layout-padding>
@@ -12,20 +23,11 @@
       </md-switch>
     </div>
   </div>
-  <div layout="row" layout-padding>
-      <div flex>
-        <label>Sort By: </label>
-        <md-select data-ng-model="sidebarCtrl.yelp.sort">
-          <md-option data-ng-repeat="option in sidebarCtrl.yelp.sortOptions" value="{{option.value}}">
-            {{option.text}}
-          </md-option>
-        </md-select>
-      </div>
-  </div>
-  <div layout="row" layout-padding>
-    <md-input-container flex>
-      <label>Search For</label>
-      <input type="text" data-ng-model="sidebarCtrl.yelp.term">
-    </md-input-container>
-  </div>
+  <!-- <div layout="row" layout-padding>
+    <div flex>
+      <label>Search Radius: {{sidebarCtrl.yelp.radius}} miles</label>
+      <md-slider id="sliderRadius" data-ng-model="sidebarCtrl.yelp.radius" flex min="{{sidebarCtrl.yelp.radiusMin}}" max="{{sidebarCtrl.yelp.radiusMax}}" aria-label="Search Radius Distance"></md-slider>
+    </div>
+  </div> -->
+
 </div>
